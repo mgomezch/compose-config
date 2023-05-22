@@ -1,0 +1,7 @@
+{
+  "foo": "bar",
+  "secrets": {
+    # Get this from the .env file!
+    "secret-sauce": env.SECRET_SAUCE | fromjson,
+  },
+}

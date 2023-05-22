@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+
+  intermission:
+    image: busybox:latest
+    command: ['/bin/cat', '/etc/intermission/config.json']
+    depends_on:
+      intermission-config:
+        condition: service_completed_successfully
+    volumes: 
+      - ./data/intermission-config/output.json:/etc/intermission/config.json:ro
+
+  intermission-config:
+    build:
+      context: .
+      dockerfile: jq.Dockerfile
+    volumes:
+      - ./data/intermission-config:/output'
+      - ./intermission-config.template.json:/input/input.jq:ro
+    environment:
+      - SECRET_SAUCE=${SECRET_SAUCE}
