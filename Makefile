@@ -1,4 +1,4 @@
-.PHONY: up rebuild clean
+.PHONY: up log rebuild down clean
 
 up:
 	docker-compose up --detach
